@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  lap_hour: 2019-01-16 22:41:47
+  lap_number: 1
+  lap_time: 2019-01-16 22:41:47
+  lap_average_speed: 1.5
+  pilot: one
+
+two:
+  lap_hour: 2019-01-16 22:41:47
+  lap_number: 1
+  lap_time: 2019-01-16 22:41:47
+  lap_average_speed: 1.5
+  pilot: two
