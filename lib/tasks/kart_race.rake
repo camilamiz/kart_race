@@ -16,7 +16,7 @@ namespace :kart_race do
   desc "create pilots"
   task pilots: :environment do
         results.each do |pilots_row|
-      if Pilot.where(pilot_name: pilots_row[3]).last.nil?
+      if Pilot.where(pilot_code: pilots_row[1]).last.nil?
         pilot = Pilot.create(pilot_code: pilots_row[1], pilot_name: pilots_row[3])
       end
     end
@@ -29,7 +29,6 @@ namespace :kart_race do
     laps_row[6][-1] = ""
     lap = Lap.create(lap_hour: Time.parse(laps_row[0]), 
                     lap_number: laps_row[4],
-                    lap_time: Time.parse(laps_row[5]),
                     lap_average_speed: laps_row[6].to_f,
                     pilot_id: Pilot.where(pilot_name: laps_row[3]).last.id,
                     lap_millisenconds: (laps_row[5][-3..-1].to_i + (laps_row[5][-6..-5].to_i*60000) + laps_row[5][0].to_i*3600000))
