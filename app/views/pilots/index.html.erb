@@ -1,5 +1,22 @@
-<% @pilots.each do |pilot| %>
-  <ul>
-    <li><%= pilot.pilot_name %></li>
-  </ul>
-<% end %>
+<table>
+  <tr>
+    <th>Posição de chegada</th>
+    <th>Código do piloto</th>   
+    <th>Nome do piloto</th>
+    <th>Quantidade de voltas completadas</th>
+    <th>Tempo total de prova</th>
+  </tr>   
+  <% @pilots.each_with_index do |pilot, i| %>
+    <tr>
+      <td><%= i + 1 %></td>
+      <td><%= pilot.pilot_code%><td>
+      <td><%= pilot.pilot_name %></td>
+      <td><%= Lap.where(pilot_id: pilot.id).pluck(:lap_number).max %></td>   
+      <td><% duration = Lap.where(pilot_id: pilot.id).pluck(:lap_millisenconds).inject(0, &:+)%>
+          <% hours = duration / (1000 * 60 * 60) %>
+          <% minutes = duration / (100 * 60) % 60 %>
+          <% milliseconds = duration - hours - minutes  %>
+          <%= hours %>:<%= minutes %>.<%= milliseconds %>
+      </td>
+   <% end %>
+</table>
