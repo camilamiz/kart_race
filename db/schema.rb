@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_17_162249) do
+ActiveRecord::Schema.define(version: 2019_03_17_175744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_03_17_162249) do
   create_table "laps", force: :cascade do |t|
     t.time "lap_hour"
     t.integer "lap_number"
-    t.time "lap_time"
     t.float "lap_average_speed"
     t.bigint "pilot_id"
     t.datetime "created_at", null: false
