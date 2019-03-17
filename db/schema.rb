@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_17_004147) do
+ActiveRecord::Schema.define(version: 2019_03_17_162249) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_004147) do
     t.bigint "pilot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "lap_millisenconds"
     t.index ["pilot_id"], name: "index_laps_on_pilot_id"
   end
 
@@ -30,6 +31,7 @@ ActiveRecord::Schema.define(version: 2019_01_17_004147) do
     t.string "pilot_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pilot_code"
   end
 
   add_foreign_key "laps", "pilots"
