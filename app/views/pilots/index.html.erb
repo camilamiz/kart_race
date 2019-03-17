@@ -11,12 +11,7 @@
       <td><%= i + 1 %></td>
       <td><%= pilot.pilot_code%><td>
       <td><%= pilot.pilot_name %></td>
-      <td><%= Lap.where(pilot_id: pilot.id).pluck(:lap_number).max %></td>   
-      <td><% duration = Lap.where(pilot_id: pilot.id).pluck(:lap_millisenconds).inject(0, &:+)%>
-          <% hours = duration / (1000 * 60 * 60) %>
-          <% minutes = duration / (100 * 60) % 60 %>
-          <% milliseconds = duration - hours - minutes  %>
-          <%= hours %>:<%= minutes %>.<%= milliseconds %>
-      </td>
+      <td><%= LapPresenter.new(pilot.id).total_laps%></td>   
+      <td><%= LapPresenter.new(pilot.id).lap_duration %></td>
    <% end %>
 </table>
