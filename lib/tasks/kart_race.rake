@@ -31,7 +31,7 @@ namespace :kart_race do
                     lap_number: laps_row[4],
                     lap_average_speed: laps_row[6].to_f,
                     pilot_id: Pilot.where(pilot_name: laps_row[3]).last.id,
-                    lap_millisenconds: (laps_row[5][-3..-1].to_i + (laps_row[5][-6..-5].to_i*60000) + laps_row[5][0].to_i*3600000))
+                    lap_millisenconds: (laps_row[5][-3..-1].to_i + (laps_row[5][-6..-5].to_i*1000) + laps_row[5][0].to_i*60000))
     end
   end
 end

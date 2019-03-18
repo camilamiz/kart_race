@@ -12,6 +12,6 @@
       <td><%= pilot.pilot_code%><td>
       <td><%= pilot.pilot_name %></td>
       <td><%= LapPresenter.new(pilot.id).pilot_total_laps%></td>   
-      <td><%= LapPresenter.new(pilot.id).pilot_lap_duration %></td>
+      <td><%= LapPresenter.new(pilot.id).formated_pilot_lap_duration %></td>
    <% end %>
 </table>

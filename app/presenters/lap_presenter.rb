@@ -12,7 +12,7 @@ class LapPresenter < SimpleDelegator
   end
 
   def formated_pilot_lap_duration
-    minutes = pilot_lap_duration / (100 * 60) % 60
+    minutes = pilot_lap_duration / 60000
     seconds = (pilot_lap_duration - 60000 * minutes)/1000
     milliseconds = pilot_lap_duration - (60000 * minutes) - (1000 * seconds)
     return "#{minutes}:#{seconds}.#{milliseconds}"
