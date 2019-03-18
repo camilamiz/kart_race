@@ -5,6 +5,10 @@
     <th>Nome do piloto</th>
     <th>Quantidade de voltas completadas</th>
     <th>Tempo total de prova</th>
+    <th>Velocidade média</th>
+    <th>Melhor volta</th>
+    <th>Tempo após vencedor</th>
+
   </tr>   
   <% @pilots.each_with_index do |pilot, i| %>
     <tr>
@@ -12,6 +16,14 @@
       <td><%= pilot.pilot_code%><td>
       <td><%= pilot.pilot_name %></td>
       <td><%= LapPresenter.new(pilot.id).pilot_total_laps%></td>   
-      <td><%= LapPresenter.new(pilot.id).formated_pilot_lap_duration %></td>
+      <td><%= LapPresenter.new(pilot.id).pilot_lap_duration %></td>
+      <td><%= LapPresenter.new(pilot.id).pilot_average_speed %></td>
+      <td><%= LapPresenter.new(pilot.id).pilot_best_lap %></td>
    <% end %>
 </table>
+<br>
+<p>Melhor volta da corrida
+<% fastest_lap_pilot = Lap.where(lap_millisenconds: Lap.minimum(:lap_millisenconds)).pluck(:pilot_id).last %>
+<% ms_lap = Lap.minimum(:lap_millisenconds) %> 
+<%= minutes = ms_lap/60000.round(0) %>:<%= seconds = ((ms_lap - (minutes*60000))/1000).round(0) %>.<%= ms_lap - (minutes*60000) - (1000*seconds)%>
+do piloto <%= Pilot.find(fastest_lap_pilot).pilot_name %></p>
