@@ -29,7 +29,7 @@ namespace :kart_race do
     laps_row[6][-1] = ""
     lap = Lap.create(lap_hour: Time.parse(laps_row[0]), 
                     lap_number: laps_row[4],
-                    lap_average_speed: laps_row[6].to_f,
+                    lap_average_speed: laps_row[6].gsub(",", ".").to_f.round(3),
                     pilot_id: Pilot.where(pilot_name: laps_row[3]).last.id,
                     lap_millisenconds: (laps_row[5][-3..-1].to_i + (laps_row[5][-6..-5].to_i*1000) + laps_row[5][0].to_i*60000))
     end
